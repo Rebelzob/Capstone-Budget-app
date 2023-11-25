@@ -1,4 +1,21 @@
-<div>
-  <h1 class="font-bold text-4xl">Expenses#new</h1>
-  <p>Find me in app/views/expenses/new.html.erb</p>
-</div>
+<article class="w-full h-full bg-gray-100 sm:rounded-2xl">
+  <header class="flex items-center w-full gap-2 text-sm text-center p-4 bg-sky-600 text-white h-14">
+    <a href="<%= category_path(@category) %>" class="flex items-center gap-1">
+      <i class="text-white text-md fa-solid fa-arrow-left"></i>
+    </a>
+    <h1 class="text-sm font-normal tracking-wider text-white uppercase pointer-events-none pl-20 ">New Transaction</h1>
+  </header>
+  <div>
+    <%= form_for :expense, url: category_expenses_path(@category), method: :post do |f| %>
+      <fieldset>
+         <%= f.text_field :name, id: 'name', autofocus: true, autocomplete: "name", placeholder: 'Name', class:'w-full border-x-transparent border-y  border-t-2   border-gray-200 outline-1 focus:border-transparent focus:ring-0', required: true %>
+      </fieldset>
+      <fieldset>
+          <%= f.text_field :amount, id: 'amount', autofocus: true, autocomplete: "amount", placeholder: 'Amount', class:'w-full border-x-transparent border-y  border-t-2 border-gray-200 outline-1 focus:border-transparent focus:ring-0', required: true %>
+      </fieldset>
+      <fieldset class="mt-5 text-center actions">
+        <%= f.submit "Save", class: "bg-sky-600 p-2 text-sm w-full block text-white md:hover:bg-black md:hover:text-white md:transition tracking-wide text-center cursor-pointer" %>
+      </fieldset>
+    <% end %>
+  </div>
+</article>

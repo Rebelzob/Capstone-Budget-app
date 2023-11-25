@@ -1,4 +1,34 @@
-<div>
-  <h1 class="font-bold text-4xl">Categories#show</h1>
-  <p>Find me in app/views/categories/show.html.erb</p>
-</div>
+<article class="relative w-full h-full bg-gray-100 sm:rounded-2xl">
+  <header class="flex items-center w-full gap-2 text-sm text-center p-4 bg-sky-600 text-white h-14">
+    <a href="<%= categories_path %>" class="flex items-center gap-1">
+      <i class="text-white text-md fa-solid fa-arrow-left"></i>
+    </a>
+    <h2 class="text-center text-l tracking-wider text-white uppercase pointer-events-none pl-20">TRANSACTIONS</h2>
+  </header>
+  <div class="h-full overflow-auto max-h-[650px]">
+    <header class="my-3 bg-white md:transition">
+      <div class="flex items-center gap-2 px-4 py-3">
+        <picture class="w-12 h-12">
+          <img src="<%= @category.icon %>" alt="icon" class="object-cover border rounded-md">
+        </picture>
+        <h3 class="text-base truncate text-ellipsis max-w-[10rem] font-normal"><%= @category.name %></h2>
+        <p class="ml-auto text-2xl font-bold"><%= number_to_currency(@total, precision: 2) %></p>
+      </div>
+    </header>
+    <ul class="relative flex flex-col gap-3 p-0 py-3 list-none">
+    <% if @expenses %>
+      <% @expenses.each do |expense| %>
+        <li class="bg-white md:hover:shadow-xl md:hover:-translate-y-1 md:active:scale-95 md:transition">
+          <a href="<%= category_expense_path(expense.id) %>" class="flex items-center gap-2 p-2 px-4">
+            <h4 class="text-sm truncate text-ellipsis max-w-[10rem] font-normal"><%= expense.name %></h2>
+            <p class="ml-auto text-lg font-bold"><%= number_to_currency(expense.amount, precision: 2) %></p>
+          </a>
+        </li>
+      <% end %>
+    <% end %>
+    </ul>
+  </div>
+  <div class="mt-auto bottom-8">
+    <%= link_to 'Add a New Transaction', new_category_expense_path(@category) , class: 'bg-lime-500 md:active:scale-95 md:hover:-translate-y-1 md:hover:shadow-xl md:transition p-2 text-white uppercase text-sm font-bold py-3 text-center block'%>
+  </div>
+</article>
