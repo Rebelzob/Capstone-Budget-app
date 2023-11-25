@@ -1,9 +1,11 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: %i[show]
+  before_action :set_user, only: %i[index show create]
 
   def index
-    @categories = current_user.categories.includes(:expenses)
-    @expenses = @categories.flat_map { |category| category.expenses.to_a }.select { |expense| expense.author_id == current_user.id }
+    @categories = @user.categories.includes(:expenses)
+    @expenses = @categories.flat_map { |category| category.expenses.to_a }
+    @expenses = @expenses.select { |expense| expense.author_id == current_user.id }
   end
 
   def show
@@ -13,10 +15,11 @@ class CategoriesController < ApplicationController
 
   def new
     @category = Category.new
+    @categories = Category.all
   end
 
   def create
-    @category = current_user.categories.build(category_params)
+    @category = @user.categories.build(category_params)
 
     if @category.save
       redirect_to categories_path
@@ -29,6 +32,10 @@ class CategoriesController < ApplicationController
 
   def set_category
     @category = Category.find_by(id: params[:id])
+  end
+
+  def set_user
+    @user = current_user
   end
 
   def category_params
