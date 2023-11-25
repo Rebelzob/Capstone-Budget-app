@@ -1,7 +1,7 @@
 <a name="readme-top"></a>
 
 <div align="center">
-  <img src="./app/assets/images/banner.jpg" />
+  <img src="./app/assets/images/banner.png" />
 </div>
 
 <!-- TABLE OF CONTENTS -->
