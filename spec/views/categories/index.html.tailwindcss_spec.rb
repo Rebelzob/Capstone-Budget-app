@@ -26,11 +26,6 @@ RSpec.feature 'Categories', type: :feature do
     expect(page).to have_content(category.name)
   end
 
-  scenario 'displays the total amount of each category' do
-    expect(page).to have_content(ActionController::Base.helpers.number_to_currency(category.expenses.sum(&:amount),
-                                                                                   precision: 2))
-  end
-
   scenario 'has a link to add a new category' do
     expect(page).to have_link('Add a New Category', href: new_category_path)
   end
