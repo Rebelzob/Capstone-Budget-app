@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Expense, type: :model do
   let(:user) { User.create(name: 'Peter Tong', email: 'petertong@example.com', password: '123456') }
-  let(:category) { Category.create(user: user, name: 'Commerce', icon: 'icon.jpg') }
+  let(:category) { Category.create(user:, name: 'Commerce', icon: 'icon.jpg') }
   let(:expense) { category.expenses.build(author_id: user.id, name: 'fries', amount: 30.58) }
 
   it 'is valid with valid attributes' do
@@ -33,12 +33,12 @@ RSpec.describe Expense, type: :model do
     expense.amount = nil
     expect(expense).to be_invalid
   end
-  
+
   it 'is not valid if the amount is not a number' do
     expense.amount = 'thirty'
     expect(expense).to be_invalid
   end
-  
+
   it 'is not valid if the amount is less than or equal to zero' do
     expense.amount = 0
     expect(expense).to be_invalid

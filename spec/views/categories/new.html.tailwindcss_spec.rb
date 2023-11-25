@@ -26,7 +26,7 @@ RSpec.feature 'Categories', type: :feature do
     fill_in 'category_name', with: 'New Category'
     fill_in 'category_icon', with: 'new_icon.png'
     click_button 'Save'
-  
+
     expect(page).to have_content('New Category')
     expect(Category.where(name: 'New Category', icon: 'new_icon.png')).to exist
   end

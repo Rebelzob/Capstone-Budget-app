@@ -8,7 +8,7 @@ RSpec.feature 'Categories', type: :feature do
   end
 
   let(:category) do
-    Category.find_or_create_by(user: user, name: 'Microverse') do |category|
+    Category.find_or_create_by(user:, name: 'Microverse') do |category|
       category.icon = 'microverse.png'
     end
   end
@@ -27,7 +27,8 @@ RSpec.feature 'Categories', type: :feature do
   end
 
   scenario 'displays the total amount of each category' do
-    expect(page).to have_content(ActionController::Base.helpers.number_to_currency(category.expenses.sum(&:amount), precision: 2))
+    expect(page).to have_content(ActionController::Base.helpers.number_to_currency(category.expenses.sum(&:amount),
+                                                                                   precision: 2))
   end
 
   scenario 'has a link to add a new category' do
