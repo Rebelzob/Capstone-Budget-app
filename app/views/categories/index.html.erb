@@ -1,4 +1,27 @@
-<div>
-  <h1 class="font-bold text-4xl">Categories#index</h1>
-  <p>Find me in app/views/categories/index.html.erb</p>
-</div>
+<article class="relative w-full h-full">
+  <header class="flex items-center justify-between w-full gap-2 text-sm text-center p-4 bg-sky-600 text-white h-14">
+    <a href="<%=root_path%>" class="flex items-center gap-1 md:hover:grayscale md:transition">
+    <%= image_tag 'mini-logo.png', class: 'w-6' %>
+    </a>
+    <h1 class="text-lg tracking-wider text-white uppercase pointer-events-none">Categories</h1>
+    <%= button_to 'Log Out', destroy_user_session_path, method: :delete, class: 'p-1 text-white uppercase text-xs font-bold py-1.5 text-center block bg-red-600 rounded-md md:hover:bg-black md:transition' %>
+  </header>
+  <div class=" overflow-auto max-h-[650px] sm:rounded-b-2xl h-full">
+    <ul class="relative flex flex-col gap-3 p-0 py-3 list-none">
+    <% @categories.each do |category| %>
+      <li class="bg-white md:hover:shadow-xl md:hover:-translate-y-1 md:active:scale-95 md:transition">
+        <a href="<%= category_path(category.id) %>" class="flex items-center gap-2 p-2 px-4">
+          <picture class="w-10 h-10">
+            <img src="<%= category.icon %>" alt="icon" class="object-cover border rounded-md">
+          </picture>
+          <h2 class="text-sm truncate text-ellipsis max-w-[10rem] font-normal"><%= category.name %></h2>
+          <p class="ml-auto text-lg font-bold"><%= number_to_currency((category.expenses.sum(&:amount)), precision: 2) %></p>
+        </a>
+      </li>
+    <% end %>
+    </ul>
+  </div>
+  <div class="mt-auto bottom-5">
+     <%= link_to 'Add a New Category', new_category_path , class: 'bg-lime-500 text-white md:active:scale-95 md:hover:-translate-y-1 md:hover:shadow-xl md:transition p-2 text-black uppercase text-sm font-bold py-3 text-center block' %>
+  </div>
+</article>
