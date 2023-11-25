@@ -1,8 +1,9 @@
-<section>
-  <article class='container'>
-    <div>
-      <%= link_to 'Login', new_user_session_path, class:'p-2' %>
-      <%= link_to 'Sign Up', new_user_registration_path %>
-    </div>
-  </article>
-</section>
+<article class='relative flex items-center w-full h-full p-2'>
+  <div class="flex items-center justify-center w-full gap-2 mb-5 text-center">
+    <%= image_tag 'logo.PNG', class:'w-6/12' %>
+  </div>
+  <div class="absolute left-0 grid w-full px-2 gap-2 text-sm bottom-20">
+    <%= link_to 'Login', new_user_session_path, class:'text-white bg-sky-600 block w-full p-2 py-4 tracking-wide uppercase md:hover:bg-black md:hover:text-white md:transition text-center' %>
+    <%= link_to 'Sign Up', new_user_registration_path, class: ' text-white bg-sky-600 block w-full p-2 py-4 tracking-wide uppercase md:hover:bg-black md:hover:text-white md:transition text-center' %>
+  </div>
+</article>
