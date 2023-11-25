@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   resources :users, only: %i[show]
 
   resources :categories, only: %i[index show new create] do
-    resources :expenses, only: %i[new create]
+    resources :expenses, only: %i[new create show]
   end
 end
