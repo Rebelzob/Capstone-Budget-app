@@ -1,27 +1,27 @@
 class ExpensesController < ApplicationController
-  before_action :set_expense, only: %i[new create]
   before_action :set_user, only: %i[new create]
+  before_action :set_category, only: %i[new create]
 
   def new
     @expense = Expense.new
   end
 
   def create
-    @expense = @user.expenses.build(expense_params)
+    @expense = Expense.new(expense_params)
     @expense.author_id = current_user.id
     @category.expenses << @expense
 
-    if @expense.save
+    if @expense.save!
       redirect_to category_path(@category)
     else
-      render :new
+      render :new, alert: 'Something went wrong'
     end
   end
 
   private
 
-  def set_expense
-    @expense = Expense.find_by(id: params[:id])
+  def set_category
+    @category = @user.categories.find(params[:category_id])
   end
 
   def set_user
@@ -29,6 +29,6 @@ class ExpensesController < ApplicationController
   end
 
   def expense_params
-    params.require(:expense).permit(:amount, :category_id)
+    params.require(:expense).permit(:name, :amount)
   end
 end
