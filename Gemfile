@@ -78,3 +78,5 @@ gem 'devise', '~> 4.9'
 gem 'faker', '~> 2.20'
 gem 'foreman', '~> 0.87.2'
 gem 'tailwindcss-rails', '~> 2.0'
+
+gem "dockerfile-rails", ">= 1.6", :group => :development
