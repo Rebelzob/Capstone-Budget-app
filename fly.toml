@@ -1,10 +1,10 @@
-# fly.toml app configuration file generated for capstone-budget-app-frosty-morning-5331 on 2024-01-27T17:38:21Z
+# fly.toml app configuration file generated for capstone-budget-app-red-sky-6930 on 2024-01-27T18:16:38Z
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'capstone-budget-app-frosty-morning-5331'
-primary_region = 'lhr'
+app = 'capstone-budget-app-red-sky-6930'
+primary_region = 'ewr'
 console_command = '/rails/bin/rails console'
 
 [build]
